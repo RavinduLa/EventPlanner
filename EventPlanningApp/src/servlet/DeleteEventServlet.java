@@ -1,3 +1,5 @@
+//IT19014128 A.M.W.W.R.L. Wataketiya
+
 package servlet;
 
 import java.io.IOException;
@@ -39,7 +41,7 @@ public class DeleteEventServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		String eventID = request.getParameter("eventId");
 		
 		IEventService iEventService = new EventServiceImplementation();

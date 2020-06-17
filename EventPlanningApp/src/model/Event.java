@@ -1,3 +1,5 @@
+//IT19014128 A.M.W.W.R.L. Wataketiya
+
 package model;
 
 import java.sql.Timestamp;
@@ -12,7 +14,6 @@ public class Event {
 	private Timestamp endingDateTime ;
 	private String duration ;
 	private String venue;
-	private boolean status;
 	private int atendeeLimit;
 	
 	public int getAtendeeLimit() {
@@ -67,12 +68,7 @@ public class Event {
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-	public boolean isStatus() {
-		return status;
-	}
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
+	
 	public String getCreatorId() {
 		return creatorId;
 	}

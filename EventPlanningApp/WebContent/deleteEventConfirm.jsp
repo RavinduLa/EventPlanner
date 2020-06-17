@@ -1,3 +1,4 @@
+<!-- IT19014128 A.M.W.W.R.L. Wataketiya -->
 <%@ page import="model.Event" %>
 <%@ page import="service.IEventService"%>
 <%@ page import="service.EventServiceImplementation"%>
@@ -20,7 +21,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
-	<h2>Event to delete</h2>
+	<h2>Delete Event</h2>
 	
 	<%
 		String eventID = request.getParameter("eventId");

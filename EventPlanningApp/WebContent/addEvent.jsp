@@ -1,3 +1,5 @@
+<!-- IT19014128 A.M.W.W.R.L. Wataketiya -->
+
 <%@ page import="model.Event" %>
 <%@ page import="service.IEventService"%>
 <%@ page import="service.EventServiceImplementation"%>
@@ -16,52 +18,60 @@
 <script src="bootstrap/js/jquery.js"> </script>
 <script src="bootstrap/js/bootstrap.min.js"> </script>
 
-<!--  <meta charset="ISO-8859-1"> -->
+
 <title>Add New Event</title>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/normalValidation.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/views/navbar.jsp"></jsp:include>
 	<h2>Add New Event</h2>
 	<form method="POST" action="AddEventServlet" > 
 		
 		<div class="form-group">
 		<label for="eventName">Event Name</label>
-		<input type="text" name="eventName" class="form-control" id="eventName"> 
+		<input type="text" name="eventName" class="form-control" id="eventName" required> 
 		</div>
 		
 		<div class="form-group">
 		<label for="startingDateTime">Starting Date and Time</label>
-		<input type="datetime-local" name="startingDateTime" class="form-control" id="startingDateTime">
-		 <small  class="form-text text-muted">Enter the date and time in yyyy:mm:dd HH:MM AM/PM format </small>
+		<input type="datetime-local" name="startingDateTime" class="form-control" id="startingDateTime" required>
+		 <small  class="form-text text-muted">Enter the date and time in yyyy-mm-dd HH:MM AM/PM format </small>
 		</div>
 		
 		<div class="form-group">
 		<label for="endingDateTime">Ending Date and Time</label>
-		<input type="datetime-local" name="endingDateTime"  class="form-control" id="endingDateTime">
-		<small  class="form-text text-muted">Enter the date and time in yyyy:mm:dd HH:MM AM/PM format </small>
+		<input type="datetime-local" name="endingDateTime"  class="form-control" id="endingDateTime" required>
+		<small  class="form-text text-muted">Enter the date and time in yyyy-mm-dd HH:MM AM/PM format </small>
 		</div>
 		
 		<div class="form-group">
 		<label for="venue" >Venue of the event</label>
-		<input type="text" name="venue" class="form-control" id="venue">
+		<input type="text" name="venue" class="form-control" id="venue" required>
 		</div>
 		
-		<!--  
-		Active status: <br/>
-		
-	  <input type="radio" id="active" name="status" value="1">
-	  <label for="active">Active</label><br>
-	  <input type="radio" id="disable" name="status" value="0">
-	  <label for="disable">Disable</label><br> -->
+	
 	  
 	  <div class="form-group">
 	  <label for="atendeeLimit" >Atendee Limit</label>
-	  <input type="number" name="atendeeLimit" class="form-control" id="atendeeLimit"> 
+	  <input type="number" name="atendeeLimit" class="form-control" id="atendeeLimit" required> 
 	  </div>
 	  
+	  
+	  
+	  <%
+	  String creatorId = null;
+	  if( (session.getAttribute("adminUsername") != null) && (session.getAttribute("normalUsername") == null) )
+	  {
+		  creatorId = (String)session.getAttribute("adminUsername");
+	  }
+	  else if ((session.getAttribute("adminUsername") == null) && (session.getAttribute("normalUsername") != null))
+	  {
+		  creatorId = (String)session.getAttribute("normalUsername");
+	  }
+	  %>
 	  <div class="form-group">
-	  <label for="creatorID" >Creator ID</label>
-	  <input type="text" name="creatorID"  class="form-control" id="creatorID"> <br/>
+	  Your creator ID: <%=creatorId %>
+	  <input type="hidden" name="creatorID" id="creatorID" value=<%=creatorId %>> <br/>
 	  </div>
 	  
 	  <input type="Submit" value="Submit" class="btn btn-primary">

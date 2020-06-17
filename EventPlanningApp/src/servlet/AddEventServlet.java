@@ -1,3 +1,5 @@
+//IT19014128 A.M.W.W.R.L. Wataketiya
+
 package servlet;
 
 import model.Event;
@@ -29,66 +31,63 @@ import java.util.Date;
 @WebServlet("/AddEventServlet")
 public class AddEventServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddEventServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AddEventServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		response.setContentType("text/html");
-		
+
 		Event event = new Event();
-		
+
 		event.setEventName(request.getParameter("eventName"));
-		
-		//starting date
-		String startingDateTime= request.getParameter("startingDateTime");
+
+		// starting date
+		String startingDateTime = request.getParameter("startingDateTime");
 		System.out.println(startingDateTime);
-		DateFormat dfStart = new SimpleDateFormat("yyyy-mm-dd hh:mm a"); //this a is required for am pm
+		DateFormat dfStart = new SimpleDateFormat("yyyy-mm-dd hh:mm a"); // this a is required for am pm
 		Date parsedStart = null;
 		try {
 			parsedStart = dfStart.parse(startingDateTime);
 			System.out.println("Successfully parsed date time");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+
 			System.out.println("Parse exception in starting date time");
 			System.out.println(e);
 			e.printStackTrace();
 		}
 		Timestamp timestampStart = null;
-		try
-		{
-			 timestampStart = new java.sql.Timestamp(parsedStart.getTime());
-			 System.out.println("executing timestamp");
-		}
-		catch(Exception ex)
-		{
+		try {
+			timestampStart = new java.sql.Timestamp(parsedStart.getTime());
+			System.out.println("executing timestamp");
+		} catch (Exception ex) {
 			System.out.println("Exception in timestamp");
 			System.out.println(ex);
 		}
 		event.setStartingDateTime(timestampStart);
-		
-		
-		
-		
-		
-		//ending date time
+
+		// ending date time
 		String end = request.getParameter("endingDateTime");
 		DateFormat dfEnd = new SimpleDateFormat("yyyy-mm-dd hh:mm a");
 		Date parsedEnd = null;
@@ -101,55 +100,38 @@ public class AddEventServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		Timestamp timestampEnd = new java.sql.Timestamp(parsedEnd.getTime());
-		
+
 		event.setEndingDateTime(timestampEnd);
-		
+
 		long diff = timestampEnd.getTime() - timestampStart.getTime();
-		//System.out.println("time diff="+diff);
-		//Venue
+
 		event.setVenue(request.getParameter("venue"));
-		
-		//boolean status
-		/*String statString = request.getParameter("status");
-		boolean b = Boolean.parseBoolean(statString);
-		event.setStatus(b);*/
-		
+
 		int atLimit = 0;
-		try
-		{
+		try {
 			atLimit = Integer.parseInt(request.getParameter("atendeeLimit"));
-		}
-		catch(NumberFormatException numex)
-		{
+		} catch (NumberFormatException numex) {
 			System.out.println("Atendee limit num format exception");
 			System.out.println(numex);
 		}
-		
+
 		event.setAtendeeLimit(atLimit);
-		
+
 		event.setCreatorId(request.getParameter("creatorID"));
-		
-		if(diff > 0)
-		{
+
+		if (diff > 0) {
 			IEventService iEventService = new EventServiceImplementation();
 			iEventService.addEvent(event);
-			
+
 			response.setContentType("text/html");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/listEvents.jsp");
 			dispatcher.forward(request, response);
-		}
-		else
-		{
+		} else {
 			response.setContentType("text/html");
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/dateError.jsp");
 			dispatcher.forward(request, response);
 		}
-		
-		
-		
-		
-		
-		
+
 	}
 
 }

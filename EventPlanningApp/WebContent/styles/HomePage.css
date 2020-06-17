@@ -1,0 +1,176 @@
+@CHARSET "ISO-8859-1";
+
+
+#mName{
+	font-size:70px;
+	text-align:center;
+	margin-top:0px;
+	word-spacing:10px;
+	letter-spacing:30px;
+	color:#990099;
+	font-family:Cambria;
+	
+
+}
+
+#mName{
+	animation-name: colorchange;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes colorchange{
+	0%{color:#0963b3}
+    
+	25%{color:white}
+    50% {color:#0963b3}
+	75%{color:#0963b3}
+	85%{color:white}
+    100% {color: black}
+}
+
+
+
+#introbox{
+	display:flex;
+	width:100%;
+	height:300px;
+	background-color:;
+	flex-direction:column;
+	justify-content:center;
+	background-image:linear-gradient(62deg,#3a3d40,#00fcb1 100%);
+}
+
+
+
+h1{
+	font-family:Leelawadee;
+	text-align:center;
+	font-size:70px;
+	color:white/*#1aff1a*/;
+}
+
+.intro-text{
+	margin-top:-20px;
+	font-family:Leelawadee;
+	text-align:center;
+	font-size:35px;
+	color: white;
+	word-spacing:10px;
+	letter-spacing:4px;
+}
+
+	
+#box1{
+	text-align:center;
+	width:100%;
+	height:570px;
+	padding:5px;
+	/*border:1px solid #990099;*/
+	background-color:;
+	 transition: transform 0.3s ease-out;
+	
+	
+}
+
+
+
+
+#image{
+	width:600px;
+	height:400px;
+}
+
+
+
+#box1:hover{
+	
+	
+	transform: translateY(-8px);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+#boxtext{
+	font-family:Leelawadee;
+	letter-spacing:2px;
+	color:black;	
+}
+
+
+
+
+
+/*---------------------footer------------*/
+
+
+
+
+
+
+
+
+#footer-contactus{
+	
+	width:100%;
+	height:400px;
+	background-color:#006973;
+	
+}
+
+#foot-follow-q{
+	font-family:Leelawadee;
+	color:white;
+	text-align:center;
+	font-size:70px;
+	margin-top:0px;
+	letter-spacing:17px;
+}
+
+#ptext0{
+	
+	font-size:30px;
+	font-family:Leelawadee;
+	color:white;
+	text-align:center;
+	margin-top:-50px;
+	text-decoration:none;
+	padding:8px;
+	
+}
+
+#footer-q{
+	display:flex;
+	justify-content:center;
+}
+
+#ptext-1
+{
+	font-size:35px;
+	font-family:Leelawadee;
+	color:white;
+	text-align:center;
+	margin-top:-50px;
+	text-decoration:none;
+	padding:13px;
+	letter-spacing:5px;	
+	
+}
+
+#ptext-2
+{
+	font-size:15px;
+	font-family:Leelawadee;
+	color:black;
+	text-align:center;
+	margin-bottom:0px;
+	text-decoration:none;
+	padding:13px;
+	letter-spacing:5px;	
+	
+}
+
+
+
+
+

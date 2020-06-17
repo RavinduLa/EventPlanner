@@ -1,3 +1,5 @@
+//IT19014128 A.M.W.W.R.L. Wataketiya
+
 package servlet;
 
 import java.io.IOException;
@@ -45,7 +47,7 @@ public class EditEventServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		
 		String eventId = request.getParameter("eventId");
 		Event event = new Event();
@@ -62,7 +64,7 @@ public class EditEventServlet extends HttpServlet {
 			parsedStart = dfStart.parse(startingDateTime);
 			System.out.println("Successfully parsed date time");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			System.out.println("Parse exception in starting date time");
 			System.out.println(e);
 			e.printStackTrace();
@@ -89,7 +91,7 @@ public class EditEventServlet extends HttpServlet {
 		try {
 			parsedEnd = dfEnd.parse(end);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			System.out.println("Parse exception in ending date time");
 			System.out.println(e);
 			e.printStackTrace();
@@ -99,14 +101,8 @@ public class EditEventServlet extends HttpServlet {
 		event.setEndingDateTime(timestampEnd);
 		
 		long diff = timestampEnd.getTime() - timestampStart.getTime();
-		//System.out.println("time diff="+diff);
-		//Venue
-		event.setVenue(request.getParameter("venue"));
 		
-		//boolean status
-		/*String statString = request.getParameter("status");
-		boolean b = Boolean.parseBoolean(statString);
-		event.setStatus(b);*/
+		event.setVenue(request.getParameter("venue"));
 		
 		int atLimit = 0;
 		try
@@ -134,7 +130,7 @@ public class EditEventServlet extends HttpServlet {
 			iEventService.updateEventById(eventId, event);
 			
 			response.setContentType("text/html");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/listEvents.jsp");
 			dispatcher.forward(request, response);
 		}
 		else

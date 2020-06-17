@@ -1,3 +1,5 @@
+//IT19014128 A.M.W.W.R.L. Wataketiya
+
 package service;
 
 import model.Event;
@@ -14,5 +16,8 @@ public interface IEventService {
 	public ArrayList<Event> getEventById(String eventId);
 	public void deleteEventById (String eventID);
 	public void updateEventById(String eventId, Event event);
+	public ArrayList<Event> getEventForCreator(String creatorId);
+	public ArrayList<Event> getTopEventForCreator(String creatorId);
+	public ArrayList<Event> searchEventByUser(String creatorId, String eventId);
 
 }
